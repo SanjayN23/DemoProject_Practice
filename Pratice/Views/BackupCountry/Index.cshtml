@@ -1,0 +1,69 @@
+﻿@model List<Pratice.Models.BackupCountry>
+
+@{
+    ViewData["Title"] = "Backup Countries";
+}
+
+<h2>Backup Countries</h2>
+
+<!-- Search Bar -->
+<div class="mb-3">
+    <input type="text" class="form-control" placeholder="Search for a country..." id="searchInput">
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Population</th>
+            <th>Economy</th>
+            <th>Currency</th>
+            <th>Backup Date Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var country in Model)
+        {
+            <tr>
+                <td>@country.Id</td>
+                <td>@country.Name</td>
+                <td>@country.Capital</td>
+                <td>@country.Population</td>
+                <td>@country.Economy</td>
+                <td>@country.Currency</td>
+                <td>@country.BackupDateTime</td>
+                <td>
+                    <form asp-controller="BackupCountry" asp-action="Retrieve" method="post">
+                        <input type="hidden" name="id" value="@country.Id" />
+                        <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to retrieve this country?')">
+                            <i class="bi bi-arrow-left-circle"></i> Retrieve
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("#searchInput").on("input", function () {
+                var searchTerm = $(this).val().toLowerCase();
+
+                $("tbody tr").each(function () {
+                    var rowText = $(this).text().toLowerCase();
+
+                    if (rowText.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+}

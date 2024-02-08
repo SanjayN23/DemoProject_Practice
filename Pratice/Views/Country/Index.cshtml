@@ -1,0 +1,190 @@
+﻿@* @model List<Pratice.Models.Country>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Country Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Population</th>
+            <th>Economy</th>
+            <th>Currency</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var country in Model)
+        {
+            <tr>
+                <td>@country.Id</td>
+                <td>@country.Name</td>
+                <td>@country.Capital</td>
+                <td>@(country.Population != 0 ? country.Population.ToString() : "N/A")</td>
+                <td>@country.Economy</td>
+                <td>@country.Currency</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Action
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Country" asp-route-id="@country.Id"
+                                   asp-action="Details">Details</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Country" asp-route-id="@country.Id"
+                                   asp-action="Edit">Edit</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Country" asp-route-id="@country.Id"
+                                    asp-action="Delete">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                   
+
+                    @* <a asp-action="Details" asp-route-id="@country.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@country.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@country.Id">Delete</a> *@
+                    
+        @*         </td>
+            </tr>
+        }
+    </tbody>
+</table> *@
+
+
+@model List<Pratice.Models.Country>
+
+@{
+    ViewData["Title"] = "Country Index";
+    Layout = "_Layout"; // Assuming you have a shared layout named _Layout.cshtml
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Country Index</h1>
+        <br />
+        <div class="row" id="cardContainer">
+            @foreach (var country in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card" draggable="true">
+                        <div class="card-body">
+                            <h5 class="card-title">@country.Name</h5>
+                            <p class="card-text">ID: @country.Id</p>
+                            <p class="card-text">Capital: @country.Capital</p>
+                            <p class="card-text">Population: @(country.Population != 0 ? country.Population.ToString("N0") : "N/A")</p>
+                            <p class="card-text">Economy: @country.Economy.ToString("N2")</p>
+                            <p class="card-text">Currency: @country.Currency</p>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Action
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Country" asp-route-id="@country.Id" asp-action="Details">Details</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Country" asp-route-id="@country.Id" asp-action="Edit">Edit</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Country" asp-route-id="@country.Id" asp-action="Delete">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for dragging the card
+        const cards = document.querySelectorAll('.card');
+        let draggedCard = null;
+
+        cards.forEach(card => {
+            card.addEventListener('dragstart', dragStart);
+            card.addEventListener('dragend', dragEnd);
+            card.addEventListener('dragover', dragOver);
+            card.addEventListener('dragenter', dragEnter);
+            card.addEventListener('dragleave', dragLeave);
+            card.addEventListener('drop', dragDrop);
+        });
+
+        function dragStart() {
+            draggedCard = this;
+            setTimeout(() => this.style.display = 'none', 0);
+        }
+
+        function dragEnd() {
+            this.style.display = 'block';
+            draggedCard = null;
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function dragEnter(e) {
+            e.preventDefault();
+            this.style.border = '2px dashed #007bff';
+        }
+
+        function dragLeave() {
+            this.style.border = 'none';
+        }
+
+        function dragDrop(e) {
+            e.preventDefault();
+            this.style.border = 'none';
+
+            // Find the drop zone
+            const dropZone = this.getBoundingClientRect();
+
+            // Calculate the position of the mouse pointer relative to the drop zone
+            const mouseY = e.clientY - dropZone.top;
+            const cardHeight = draggedCard.getBoundingClientRect().height;
+            const isAfter = mouseY > cardHeight / 2;
+
+            // Insert the dragged card before or after the current card
+            if (isAfter) {
+                this.parentNode.insertBefore(draggedCard, this.nextElementSibling);
+            } else {
+                this.parentNode.insertBefore(draggedCard, this);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+

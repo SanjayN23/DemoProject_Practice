@@ -1,0 +1,39 @@
+﻿@model List<Pratice.Models.Country>
+
+<h1>Deleted Countries</h1>
+
+@if (Model.Any())
+{
+    <div class="card-deck">
+        @foreach (var country in Model)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">@country.Name</h5>
+                    <p class="card-text">
+                        <strong>Capital:</strong> @country.Capital <br />
+                        <strong>ID:</strong> @country.Id
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <form asp-area="" asp-controller="Country" asp-route-id="@country.Id" asp-action="RetrieveCountry" method="post">
+                        <input type="hidden" name="method" value="post" />
+                        <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to retrieve this country?')">
+                            <i class="bi bi-arrow-right-circle"></i> Retrieve
+                        </button>
+                    </form>
+                    <form asp-area="" asp-controller="Country" asp-route-id="@country.Id" asp-action="ConfirmDelete" method="post">
+                        <input type="hidden" name="method" value="post" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this country?')">
+                            <i class="bi bi-arrow-right-circle"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="lead">No deleted countries found.</p>
+}

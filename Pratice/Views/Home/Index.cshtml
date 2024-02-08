@@ -1,0 +1,98 @@
+﻿@* @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Country List</h1>
+
+
+</div>
+
+@* <div>
+    <a href="Country">Country</a>
+</div> *@
+
+@*< div class="dropdown-center">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Country List
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+            <a class="dropdown-item" asp-area="" asp-controller="Country"
+               asp-action="Index">List</a>
+        </li>
+        <li>
+            <a class="dropdown-item" asp-area="" asp-controller="Country"
+               asp-action="Create">Add a Country</a>
+        </li>
+    </ul>
+</div>  *@
+
+@* @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Country List</h1>
+</div>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="Country" asp-action="Index">View Country List</a>
+    <a class="btn btn-success" asp-area="" asp-controller="Country" asp-action="Create">Add a Country Info</a>
+</div> *@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="site.css" />
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Your custom styles go here -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 0px;
+        }
+
+        .jumbotron {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn-primary,
+        .btn-success {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Country</h1>
+            <p class="lead">Explore and manage country information with ease.</p>
+        </div>
+
+        <div class="btn-container text-center">
+            <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Country" asp-action="Index">View Country List</a>
+            <a class="btn btn-success btn-lg" asp-area="" asp-controller="Country" asp-action="Create">Add a Country Info</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript (jQuery Slim, Popper.js, and Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿@* @model Pratice.Models.Country
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Country</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capital" class="control-label"></label>
+                <input asp-for="Capital" class="form-control" />
+                <span asp-validation-for="Capital" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Population" class="control-label"></label>
+                <input asp-for="Population" class="form-control" />
+                <span asp-validation-for="Population" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Economy" class="control-label"></label>
+                <input asp-for="Economy" class="form-control" />
+                <span asp-validation-for="Economy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Currency" class="control-label"></label>
+                <input asp-for="Currency" class="form-control" />
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@
+
+@model Pratice.Models.Country
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    /* Custom CSS styles */
+    .form-container {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h1>Create</h1>
+
+<div class="form-container">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Name" class="control-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Capital" class="control-label">Capital</label>
+            <input asp-for="Capital" class="form-control" />
+            <span asp-validation-for="Capital" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Population" class="control-label">Population</label>
+            <input asp-for="Population" class="form-control" />
+            <span asp-validation-for="Population" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Economy" class="control-label">Economy</label>
+            <input asp-for="Economy" class="form-control" />
+            <span asp-validation-for="Economy" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Currency" class="control-label">Currency</label>
+            <input asp-for="Currency" class="form-control" />
+            <span asp-validation-for="Currency" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div style="margin-top: 20px;">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
